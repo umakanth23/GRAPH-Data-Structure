@@ -1,23 +1,16 @@
 
+//Link : https://www.geeksforgeeks.org/problems/topological-sort/1
 
-//link : https://www.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1
-/*
-    1. Using topological sorting kahn's algorithm
-    2. topological sort is only used for Directed acyclic graph (DAG)
-    3. if topological does work for this, then it doesn't cycle
-    4. if doesn't work, that means, it has cycle.
-*/
+// Using Queue and kahns algorithm
 
 
 class Solution {
-
   public:
-    
-    bool isCyclic(int V, vector<vector<int>> &edges) {
-            
+    vector<int> topoSort(int V, vector<vector<int>>& edges) {
         
-        //BFS Solution    
-        // lets build adjacency list first
+    
+        //using bfs and kahns algorithm
+        
         vector<vector<int>>adj(V);
         
         for(int i=0;i<edges.size();i++)
@@ -51,12 +44,14 @@ class Solution {
             }
         }
         
+        vector<int>res;
+        
         int cnt = 0;
         while(q.empty()==false)
         {
             
             int u = q.front(); q.pop();
-            cnt++;
+            res.push_back(u);
             
             for(auto x:adj[u])
             {
@@ -69,8 +64,10 @@ class Solution {
             
         }
         
-        return !(cnt==V);
-        
+        return res;
         
     }
 };
+
+
+
